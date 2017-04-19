@@ -9,14 +9,14 @@ uses
 
 type
   TFCalculator = class(TForm, ICalcView)
-    lbledtValore1: TLabeledEdit;
-    lbledtValore2: TLabeledEdit;
-    btnEsegui: TButton;
+    lbledtValue1: TLabeledEdit;
+    lbledtValue2: TLabeledEdit;
+    btnPerformOperation: TButton;
     lbledtResult: TLabeledEdit;
     ComboBox1: TComboBox;
-    lblOperazione: TLabel;
+    lblOperation: TLabel;
     procedure FormCreate(Sender: TObject);
-    procedure btnEseguiClick(Sender: TObject);
+    procedure btnPerformOperationClick(Sender: TObject);
   private
     FCalcPresenter: TCalcPresenter;
   public
@@ -55,12 +55,12 @@ end;
 
 function TFCalculator.GetValueOne: Integer;
 begin
-  result := StrToInt(lbledtValore1.Text);
+  result := StrToInt(lbledtValue1.Text);
 end;
 
 function TFCalculator.GetValueTwo: Integer;
 begin
-  result := StrToInt(lbledtValore2.Text);
+  result := StrToInt(lbledtValue2.Text);
 end;
 
 function TFCalculator.AskConfirmation(AValue: string): Boolean;
@@ -68,7 +68,7 @@ begin
   result := (Application.MessageBox(PChar(AValue), APPTITLE, MB_YESNO) = IDYES);
 end;
 
-procedure TFCalculator.btnEseguiClick(Sender: TObject);
+procedure TFCalculator.btnPerformOperationClick(Sender: TObject);
 begin
   FCalcPresenter.PerformOperation;
 end;
