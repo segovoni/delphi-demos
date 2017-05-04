@@ -1,9 +1,11 @@
 object FCalculator: TFCalculator
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'FCalculator'
-  ClientHeight = 174
-  ClientWidth = 570
+  ClientHeight = 184
+  ClientWidth = 580
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +14,7 @@ object FCalculator: TFCalculator
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object lblOperation: TLabel

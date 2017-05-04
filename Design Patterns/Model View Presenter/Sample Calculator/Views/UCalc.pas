@@ -21,7 +21,7 @@ type
     procedure DisplayMessage(AValue: string);
     // input/output
     function AskConfirmation(AValue: string): Boolean;
-    procedure PerformOperation;
+    procedure Execute;
   end;
 
 implementation
@@ -66,7 +66,7 @@ begin
   WriteLn(AValue);
 end;
 
-procedure TViewCalcSimulator.PerformOperation;
+procedure TViewCalcSimulator.Execute;
 begin
   FCalcPresenter.PerformOperation;
 end;

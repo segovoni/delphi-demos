@@ -20,7 +20,7 @@ begin
 
       while True do
       begin
-        LViewCalcSimulator.PerformOperation;
+        LViewCalcSimulator.Execute;
         WriteLn('================================');
         ReadLn;
       end;

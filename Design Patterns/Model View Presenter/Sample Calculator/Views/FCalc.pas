@@ -16,6 +16,7 @@ type
     ComboBox1: TComboBox;
     lblOperation: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure btnPerformOperationClick(Sender: TObject);
   private
     FCalcPresenter: TCalcPresenter;
@@ -46,6 +47,11 @@ const
 procedure TFCalculator.FormCreate(Sender: TObject);
 begin
   FCalcPresenter := TCalcPresenter.Create(self);
+end;
+
+procedure TFCalculator.FormDestroy(Sender: TObject);
+begin
+  FCalcPresenter.Free;
 end;
 
 function TFCalculator.GetOperator: string;
