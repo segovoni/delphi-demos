@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="2zn0ak8zfer_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::bq2hl3nbbjj_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,163,134" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:DisplayTextAdapter.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::btptoqisn5s_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="192,1,177,196" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersU.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersU.TLabelAdapter" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersU.TEditAdapter" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersU.TCheckBoxAdapter" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersU.TButtonAdapter" />
+    </reference>
+    <reference referencedUin="design:view:::klb26zs39zo_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="83,163,106,151" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:FAdapter.TfrmAdapter" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:FAdapter.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::6uam520gugt_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="388,1,186,151" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersIntf.ITextDisplay" />
+      <reference referencedUin="delphi:e_class:src:DisplayTextAdapter:ComponentAdaptersIntf.@unitclass" />
+    </reference>
+  </view>
+</nodeSet>
