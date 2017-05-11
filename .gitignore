@@ -1,2 +1,5 @@
 *.local
 *.identcache
+Design Patterns/Model View Presenter/Word Calculator/WordOccurenceCalculator.res
+*.stat
+Design Patterns/Model View Presenter/Word Calculator/WordOccurenceCalculator_Test_VCL.res

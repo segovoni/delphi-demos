@@ -55,8 +55,10 @@ begin
       LCurrentPosition := PosEx(AWordSearch, AFileContent.Text, LCurrentPosition + Length(AWordSearch));
     end;
   end
-  else
+  else begin
+    Result := -1;
     AFileContent.Text := 'The file or directory does not exist!';
+  end;
 end;
 
 procedure TFileWordCalculatorService.SetResourcePath(const AValue: string);
