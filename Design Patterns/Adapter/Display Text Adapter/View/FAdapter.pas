@@ -19,7 +19,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure edtSourceChange(Sender: TObject);
   private
-    // Components adapters
+    // Adapters
     FLabelAdapter: TLabelAdapter;
     FLabelOneAdapter: TLabelAdapter;
     FButtonAdapter: TButtonAdapter;
