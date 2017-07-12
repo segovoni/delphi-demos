@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A850CC20-7FD5-49EC-A84F-A9BF896A7175}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ATM.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PkgATM.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ATM_VCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ATM">
+        <MSBuild Projects="ATM.dproj"/>
+    </Target>
+    <Target Name="ATM:Clean">
+        <MSBuild Projects="ATM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATM:Make">
+        <MSBuild Projects="ATM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PkgATM">
+        <MSBuild Projects="PkgATM.dproj"/>
+    </Target>
+    <Target Name="PkgATM:Clean">
+        <MSBuild Projects="PkgATM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PkgATM:Make">
+        <MSBuild Projects="PkgATM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ATM_VCL">
+        <MSBuild Projects="ATM_VCL.dproj"/>
+    </Target>
+    <Target Name="ATM_VCL:Clean">
+        <MSBuild Projects="ATM_VCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATM_VCL:Make">
+        <MSBuild Projects="ATM_VCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ATM;PkgATM;ATM_VCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ATM:Clean;PkgATM:Clean;ATM_VCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ATM:Make;PkgATM:Make;ATM_VCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

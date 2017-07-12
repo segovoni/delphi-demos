@@ -111,7 +111,11 @@ type
 
 implementation
 
-{ TMyATM }
+uses
+  System.SysUtils;
+
+
+{ TATM }
 
 constructor TATM.Create;
 begin
@@ -132,6 +136,8 @@ end;
 function TATM.Preleva: string;
 begin
   Result := F100.HandleRequest(FImportoDaPrelevare);
+  if CompareText(Copy(Result, Length(Result) - 1, 2), ', ') = 0 then
+    Delete(Result, Length(Result) - 1, 2);
 end;
 
 { THandlerCento }

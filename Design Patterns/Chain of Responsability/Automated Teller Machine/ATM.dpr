@@ -20,9 +20,6 @@ begin
   try
     LATM.ImportoDaPrelevare := LImporto.ToInteger;
     LBanconote := LATM.Preleva;
-
-    if CompareText(Copy(LBanconote, Length(LBanconote) - 1, 2), ', ') = 0 then
-      Delete(LBanconote, Length(LBanconote) - 1, 2);
   finally
     LATM.Free;
   end;
