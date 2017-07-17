@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{998A1672-8F41-49A2-839C-8E0E80C26AC5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Table Data Gateway\Table Data Gateway 1\TableDataGateway1_Console.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Active Record\Active Record 1\ActiveRecord1_Console.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TableDataGateway1_Console">
+        <MSBuild Projects="Table Data Gateway\Table Data Gateway 1\TableDataGateway1_Console.dproj"/>
+    </Target>
+    <Target Name="TableDataGateway1_Console:Clean">
+        <MSBuild Projects="Table Data Gateway\Table Data Gateway 1\TableDataGateway1_Console.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TableDataGateway1_Console:Make">
+        <MSBuild Projects="Table Data Gateway\Table Data Gateway 1\TableDataGateway1_Console.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ActiveRecord1_Console">
+        <MSBuild Projects="Active Record\Active Record 1\ActiveRecord1_Console.dproj"/>
+    </Target>
+    <Target Name="ActiveRecord1_Console:Clean">
+        <MSBuild Projects="Active Record\Active Record 1\ActiveRecord1_Console.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ActiveRecord1_Console:Make">
+        <MSBuild Projects="Active Record\Active Record 1\ActiveRecord1_Console.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TableDataGateway1_Console;ActiveRecord1_Console"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TableDataGateway1_Console:Clean;ActiveRecord1_Console:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TableDataGateway1_Console:Make;ActiveRecord1_Console:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
