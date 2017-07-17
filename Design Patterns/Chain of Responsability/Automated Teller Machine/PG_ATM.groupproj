@@ -18,6 +18,9 @@
         <Projects Include="ATM_VCL.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="ATM_VCL_Using_Packages\ATM_VCL_Using_Packages.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="ATM_VCL:Make">
         <MSBuild Projects="ATM_VCL.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ATM_VCL_Using_Packages">
+        <MSBuild Projects="ATM_VCL_Using_Packages\ATM_VCL_Using_Packages.dproj"/>
+    </Target>
+    <Target Name="ATM_VCL_Using_Packages:Clean">
+        <MSBuild Projects="ATM_VCL_Using_Packages\ATM_VCL_Using_Packages.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATM_VCL_Using_Packages:Make">
+        <MSBuild Projects="ATM_VCL_Using_Packages\ATM_VCL_Using_Packages.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="PkgBanconote;PkgBancomat;PkgATM;ATM;ATM_VCL"/>
+        <CallTarget Targets="PkgBanconote;PkgBancomat;PkgATM;ATM;ATM_VCL;ATM_VCL_Using_Packages"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="PkgBanconote:Clean;PkgBancomat:Clean;PkgATM:Clean;ATM:Clean;ATM_VCL:Clean"/>
+        <CallTarget Targets="PkgBanconote:Clean;PkgBancomat:Clean;PkgATM:Clean;ATM:Clean;ATM_VCL:Clean;ATM_VCL_Using_Packages:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="PkgBanconote:Make;PkgBancomat:Make;PkgATM:Make;ATM:Make;ATM_VCL:Make"/>
+        <CallTarget Targets="PkgBanconote:Make;PkgBancomat:Make;PkgATM:Make;ATM:Make;ATM_VCL:Make;ATM_VCL_Using_Packages:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
