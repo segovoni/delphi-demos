@@ -3,10 +3,16 @@
         <ProjectGuid>{A850CC20-7FD5-49EC-A84F-A9BF896A7175}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="ATM.dproj">
+        <Projects Include="PkgBanconote\PkgBanconote.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PkgBancomat\PkgBancomat.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="PkgATM.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ATM.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="ATM_VCL.dproj">
@@ -20,14 +26,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="ATM">
-        <MSBuild Projects="ATM.dproj"/>
+    <Target Name="PkgBanconote">
+        <MSBuild Projects="PkgBanconote\PkgBanconote.dproj"/>
     </Target>
-    <Target Name="ATM:Clean">
-        <MSBuild Projects="ATM.dproj" Targets="Clean"/>
+    <Target Name="PkgBanconote:Clean">
+        <MSBuild Projects="PkgBanconote\PkgBanconote.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="ATM:Make">
-        <MSBuild Projects="ATM.dproj" Targets="Make"/>
+    <Target Name="PkgBanconote:Make">
+        <MSBuild Projects="PkgBanconote\PkgBanconote.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PkgBancomat">
+        <MSBuild Projects="PkgBancomat\PkgBancomat.dproj"/>
+    </Target>
+    <Target Name="PkgBancomat:Clean">
+        <MSBuild Projects="PkgBancomat\PkgBancomat.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PkgBancomat:Make">
+        <MSBuild Projects="PkgBancomat\PkgBancomat.dproj" Targets="Make"/>
     </Target>
     <Target Name="PkgATM">
         <MSBuild Projects="PkgATM.dproj"/>
@@ -37,6 +52,15 @@
     </Target>
     <Target Name="PkgATM:Make">
         <MSBuild Projects="PkgATM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ATM">
+        <MSBuild Projects="ATM.dproj"/>
+    </Target>
+    <Target Name="ATM:Clean">
+        <MSBuild Projects="ATM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ATM:Make">
+        <MSBuild Projects="ATM.dproj" Targets="Make"/>
     </Target>
     <Target Name="ATM_VCL">
         <MSBuild Projects="ATM_VCL.dproj"/>
@@ -48,13 +72,13 @@
         <MSBuild Projects="ATM_VCL.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="ATM;PkgATM;ATM_VCL"/>
+        <CallTarget Targets="PkgBanconote;PkgBancomat;PkgATM;ATM;ATM_VCL"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ATM:Clean;PkgATM:Clean;ATM_VCL:Clean"/>
+        <CallTarget Targets="PkgBanconote:Clean;PkgBancomat:Clean;PkgATM:Clean;ATM:Clean;ATM_VCL:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ATM:Make;PkgATM:Make;ATM_VCL:Make"/>
+        <CallTarget Targets="PkgBanconote:Make;PkgBancomat:Make;PkgATM:Make;ATM:Make;ATM_VCL:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

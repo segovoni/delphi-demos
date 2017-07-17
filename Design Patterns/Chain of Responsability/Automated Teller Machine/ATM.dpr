@@ -17,6 +17,7 @@ begin
   ReadLn(LImporto);
 
   LATM := TATM.Create;
+
   try
     LATM.ImportoDaPrelevare := LImporto.ToInteger;
     LBanconote := LATM.Preleva;
@@ -31,7 +32,6 @@ begin
 end;
 
 begin
-
   try
     while True do
       MainATM
@@ -39,4 +39,5 @@ begin
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
+
 end.
