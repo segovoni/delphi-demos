@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CA971B11-1C73-4CD5-959A-CCE3D5CEF74E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SampleCalculatorVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SampleCalculatorConsole.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SampleCalculatorVCL">
+        <MSBuild Projects="SampleCalculatorVCL.dproj"/>
+    </Target>
+    <Target Name="SampleCalculatorVCL:Clean">
+        <MSBuild Projects="SampleCalculatorVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SampleCalculatorVCL:Make">
+        <MSBuild Projects="SampleCalculatorVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SampleCalculatorConsole">
+        <MSBuild Projects="SampleCalculatorConsole.dproj"/>
+    </Target>
+    <Target Name="SampleCalculatorConsole:Clean">
+        <MSBuild Projects="SampleCalculatorConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SampleCalculatorConsole:Make">
+        <MSBuild Projects="SampleCalculatorConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SampleCalculatorVCL;SampleCalculatorConsole"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SampleCalculatorVCL:Clean;SampleCalculatorConsole:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SampleCalculatorVCL:Make;SampleCalculatorConsole:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
