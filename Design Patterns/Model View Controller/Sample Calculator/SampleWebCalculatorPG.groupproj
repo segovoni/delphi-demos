@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BE44FF00-7AF8-49BA-B231-A3D454384078}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SampleWebCalculator.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ISAPISampleWebCalculator.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SampleWebCalculator">
+        <MSBuild Projects="SampleWebCalculator.dproj"/>
+    </Target>
+    <Target Name="SampleWebCalculator:Clean">
+        <MSBuild Projects="SampleWebCalculator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SampleWebCalculator:Make">
+        <MSBuild Projects="SampleWebCalculator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ISAPISampleWebCalculator">
+        <MSBuild Projects="ISAPISampleWebCalculator.dproj"/>
+    </Target>
+    <Target Name="ISAPISampleWebCalculator:Clean">
+        <MSBuild Projects="ISAPISampleWebCalculator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ISAPISampleWebCalculator:Make">
+        <MSBuild Projects="ISAPISampleWebCalculator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SampleWebCalculator;ISAPISampleWebCalculator"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SampleWebCalculator:Clean;ISAPISampleWebCalculator:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SampleWebCalculator:Make;ISAPISampleWebCalculator:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
