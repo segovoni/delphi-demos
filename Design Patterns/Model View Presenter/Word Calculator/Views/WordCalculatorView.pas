@@ -35,6 +35,8 @@ type
     procedure DisplayMessage(const AValue: string);
     // Questions to the operator
     function AskForConfirmation(const AValue: string): TModalResult;
+
+    procedure PerformCalculation;
   end;
 
 var
@@ -101,6 +103,11 @@ end;
 function TfrmWordCalculator.GetWordToSearch: string;
 begin
   Result := lbledtWordToSearch.Text;
+end;
+
+procedure TfrmWordCalculator.PerformCalculation;
+begin
+  FPresenterWordCalculator.PerformCalculation;
 end;
 
 procedure TfrmWordCalculator.SetResourceContent(AValue: TStrings);

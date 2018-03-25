@@ -26,8 +26,10 @@ type
     FWordToSearch: string;
     FResourceContent: TStringList;
     FResult: Integer;
+    FPresenterWordCalculator: TPresenterWordCalculator;
   public
     constructor Create(const AResourceType: Integer; const AWordToSearch: string; const AResourcePath: string);
+    destructor Destroy; override;
     // Input
     function GetResourcePath: string;
     function GetResourceType: Integer;
@@ -40,12 +42,13 @@ type
     procedure DisplayMessage(const AValue: string);
     // Questions to the operator
     function AskForConfirmation(const AValue: string): TModalResult;
+
+    procedure PerformCalculation;
   end;
 
   TTestCaseWordCalculator = class(TTestCase)
   private
-    LPresenterWordCalculator: TPresenterWordCalculator;
-    LIViewWordCalculator: IViewWordCalculator;
+    FViewWordCalculator: IViewWordCalculator;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -78,6 +81,15 @@ begin
   FResourcePath := AResourcePath;
   FResult := -1;
   FResourceContent := TStringList.Create;
+
+  FPresenterWordCalculator := TPresenterWordCalculator.Create(Self);
+end;
+
+destructor TViewSimulator.Destroy;
+begin
+  FPresenterWordCalculator.Free;
+
+  inherited;
 end;
 
 procedure TViewSimulator.DisplayMessage(const AValue: string);
@@ -105,6 +117,11 @@ begin
   Result := FWordToSearch;
 end;
 
+procedure TViewSimulator.PerformCalculation;
+begin
+  FPresenterWordCalculator.PerformCalculation;
+end;
+
 procedure TViewSimulator.SetResourceContent(AValue: TStrings);
 begin
   TStrings(FResourceContent) := AValue;
@@ -120,21 +137,19 @@ end;
 procedure TTestCaseWordCalculator.SetUp;
 begin
   inherited;
-  LIViewWordCalculator := TViewSimulator.Create(0, ' if ', 'C:\Temp\WordCalculatorView.pas');
-  LPresenterWordCalculator := TPresenterWordCalculator.Create(LIViewWordCalculator);
+  FViewWordCalculator := TViewSimulator.Create(0, ' if ', 'C:\Temp\WordCalculatorView.pas');
 end;
 
 procedure TTestCaseWordCalculator.TearDown;
 begin
   inherited;
-  LPresenterWordCalculator.Free;
 end;
 
 procedure TTestCaseWordCalculator.TestWordCalculator;
 begin
-  LPresenterWordCalculator.PerformCalculation;
+  FViewWordCalculator.PerformCalculation;
 
-  Check(TViewSimulator(LIViewWordCalculator).GetResult <> -1 , 'Calculation executed with errors');
+  Check(TViewSimulator(FViewWordCalculator).GetResult <> -1 , 'Calculation executed with errors');
 end;
 
 initialization

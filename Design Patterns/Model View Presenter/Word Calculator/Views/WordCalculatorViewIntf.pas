@@ -21,6 +21,8 @@ type
     procedure DisplayMessage(const AValue: string);
     // Questions to the operator
     function AskForConfirmation(const AValue: string): TModalResult;
+
+    procedure PerformCalculation;
   end;
 
 implementation
