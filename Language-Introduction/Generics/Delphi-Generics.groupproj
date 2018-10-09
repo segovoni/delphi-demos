@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{30FD302A-1164-4794-9F6B-CBA34E16FDA6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NameValueGenerics\NameValueGenerics.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="NameValueGenerics">
+        <MSBuild Projects="NameValueGenerics\NameValueGenerics.dproj"/>
+    </Target>
+    <Target Name="NameValueGenerics:Clean">
+        <MSBuild Projects="NameValueGenerics\NameValueGenerics.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NameValueGenerics:Make">
+        <MSBuild Projects="NameValueGenerics\NameValueGenerics.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="NameValueGenerics"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="NameValueGenerics:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="NameValueGenerics:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
