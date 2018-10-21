@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F6AA4A36-7658-447B-8C46-DF01192594A6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FlyBehavior\FlyBehavior.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FlyBehavior">
+        <MSBuild Projects="FlyBehavior\FlyBehavior.dproj"/>
+    </Target>
+    <Target Name="FlyBehavior:Clean">
+        <MSBuild Projects="FlyBehavior\FlyBehavior.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FlyBehavior:Make">
+        <MSBuild Projects="FlyBehavior\FlyBehavior.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FlyBehavior"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FlyBehavior:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FlyBehavior:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
