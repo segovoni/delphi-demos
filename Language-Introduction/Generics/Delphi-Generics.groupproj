@@ -6,6 +6,9 @@
         <Projects Include="NameValueGenerics\NameValueGenerics.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="TList\ListContainer.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="NameValueGenerics:Make">
         <MSBuild Projects="NameValueGenerics\NameValueGenerics.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ListContainer">
+        <MSBuild Projects="TList\ListContainer.dproj"/>
+    </Target>
+    <Target Name="ListContainer:Clean">
+        <MSBuild Projects="TList\ListContainer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ListContainer:Make">
+        <MSBuild Projects="TList\ListContainer.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="NameValueGenerics"/>
+        <CallTarget Targets="NameValueGenerics;ListContainer"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="NameValueGenerics:Clean"/>
+        <CallTarget Targets="NameValueGenerics:Clean;ListContainer:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="NameValueGenerics:Make"/>
+        <CallTarget Targets="NameValueGenerics:Make;ListContainer:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
