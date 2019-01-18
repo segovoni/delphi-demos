@@ -4,29 +4,32 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = '101 Anonymous Methods'
-  ClientHeight = 322
-  ClientWidth = 543
+  ClientHeight = 516
+  ClientWidth = 642
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -6
+  Font.Height = -4
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  DesignSize = (
+    642
+    516)
   PixelsPerInch = 120
-  TextHeight = 7
+  TextHeight = 5
   object lbledtInputString: TLabeledEdit
-    Left = 5
-    Top = 21
-    Width = 532
-    Height = 36
+    Left = 3
+    Top = 30
+    Width = 631
+    Height = 41
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
     Margins.Bottom = 2
-    EditLabel.Width = 29
-    EditLabel.Height = 16
+    EditLabel.Width = 39
+    EditLabel.Height = 21
     EditLabel.Margins.Left = 2
     EditLabel.Margins.Top = 2
     EditLabel.Margins.Right = 2
@@ -34,13 +37,13 @@ object frmMain: TfrmMain
     EditLabel.Caption = 'Input'
     EditLabel.Font.Charset = DEFAULT_CHARSET
     EditLabel.Font.Color = clWindowText
-    EditLabel.Font.Height = -13
+    EditLabel.Font.Height = -17
     EditLabel.Font.Name = 'Tahoma'
     EditLabel.Font.Style = []
     EditLabel.ParentFont = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -23
+    Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -48,10 +51,10 @@ object frmMain: TfrmMain
     TextHint = 'Insert the string here!'
   end
   object btnScramble: TButton
-    Left = 5
-    Top = 61
-    Width = 532
-    Height = 60
+    Left = 3
+    Top = 83
+    Width = 631
+    Height = 70
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
@@ -59,7 +62,7 @@ object frmMain: TfrmMain
     Caption = 'Scramble'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -67,16 +70,17 @@ object frmMain: TfrmMain
     OnClick = btnScrambleClick
   end
   object lbledtOutputString: TLabeledEdit
-    Left = 5
-    Top = 276
-    Width = 532
-    Height = 36
+    Left = 3
+    Top = 449
+    Width = 631
+    Height = 44
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
     Margins.Bottom = 2
-    EditLabel.Width = 38
-    EditLabel.Height = 16
+    Anchors = [akLeft, akTop, akBottom]
+    EditLabel.Width = 51
+    EditLabel.Height = 21
     EditLabel.Margins.Left = 2
     EditLabel.Margins.Top = 2
     EditLabel.Margins.Right = 2
@@ -84,24 +88,24 @@ object frmMain: TfrmMain
     EditLabel.Caption = 'Output'
     EditLabel.Font.Charset = DEFAULT_CHARSET
     EditLabel.Font.Color = clWindowText
-    EditLabel.Font.Height = -13
+    EditLabel.Font.Height = -17
     EditLabel.Font.Name = 'Tahoma'
     EditLabel.Font.Style = []
     EditLabel.ParentFont = False
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -23
+    Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
     TabOrder = 2
   end
   object btnDuplicate: TButton
-    Left = 5
-    Top = 125
-    Width = 532
-    Height = 60
+    Left = 3
+    Top = 157
+    Width = 631
+    Height = 70
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
@@ -109,7 +113,7 @@ object frmMain: TfrmMain
     Caption = 'Duplicate'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -117,10 +121,10 @@ object frmMain: TfrmMain
     OnClick = btnDuplicateClick
   end
   object btnScrableAndDuplicate: TButton
-    Left = 5
-    Top = 189
-    Width = 532
-    Height = 59
+    Left = 3
+    Top = 231
+    Width = 631
+    Height = 70
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
@@ -128,11 +132,30 @@ object frmMain: TfrmMain
     Caption = 'Scrable and Duplicate'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    OnClick = btnScrableAndDuplicateClick
+    OnClick = btnScrambleAndDuplicateClick
+  end
+  object btnScrableAndDuplicateV2: TButton
+    Left = 3
+    Top = 305
+    Width = 631
+    Height = 70
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Caption = 'Scrable and Duplicate V2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    OnClick = btnScrableAndDuplicateV2Click
   end
 end

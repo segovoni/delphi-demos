@@ -21,9 +21,15 @@ type
   /// <summary>
   ///   Pointer to a global anonymous method type
   /// </summary>
-  TStringAnonymous = reference to function (const AValue: string): string;
+  /// <remarks>
+  ///   The anonymous method can extract knowledge from the assignment, see the
+  ///   conditional directive "ANONYMOUS_METHOD_CAN_EXTRACT_KNOWLEDGE"
+  /// </remarks>
+  TStringAnonymousMethod = reference to function (const AValue: string): string;
 
   TfrmMain = class(TForm)
+    btnScrableAndDuplicateV2: TButton;
+    procedure btnScrableAndDuplicateV2Click(Sender: TObject);
   published
     lbledtInputString: TLabeledEdit;
     btnScramble: TButton;
@@ -33,12 +39,13 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnScrambleClick(Sender: TObject);
     procedure btnDuplicateClick(Sender: TObject);
-    procedure btnScrableAndDuplicateClick(Sender: TObject);
+    procedure btnScrambleAndDuplicateClick(Sender: TObject);
   private
     FStringScrambler: TStringFunction;
     FStringDuplicator: TStringMethod;
-    FStringAnonymous: TStringAnonymous;
+    FStringAnonymousMethod: TStringAnonymousMethod;
     function StringDuplicate(const AValue: string): string;
+    procedure ScrambleAndDuplicate(AAnonymousMethod: TStringAnonymousMethod);
   end;
 
 var
@@ -75,9 +82,18 @@ begin
   lbledtOutputString.Text := FStringDuplicator(lbledtInputString.Text);
 end;
 
-procedure TfrmMain.btnScrableAndDuplicateClick(Sender: TObject);
+procedure TfrmMain.btnScrableAndDuplicateV2Click(Sender: TObject);
 begin
-  lbledtOutputString.Text := FStringAnonymous(lbledtInputString.Text);
+  ScrambleAndDuplicate(function (const AValue: string): string
+    begin
+      // "abcd" --> "dbca dbca"
+      Result := ReverseString(AValue);
+    end);
+end;
+
+procedure TfrmMain.btnScrambleAndDuplicateClick(Sender: TObject);
+begin
+  lbledtOutputString.Text := FStringAnonymousMethod(lbledtInputString.Text);
 end;
 
 procedure TfrmMain.btnScrambleClick(Sender: TObject);
@@ -86,15 +102,37 @@ begin
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
+{$IFDEF ANONYMOUS_METHOD_CAN_EXTRACT_KNOWLEDGE}
+var
+  LSeparator: string;
+{$ENDIF}
 begin
   FStringScrambler := @StringScrambler;
   FStringDuplicator := StringDuplicate;
 
-  FStringAnonymous := function (const AValue: string): string
+  {$IFDEF ANONYMOUS_METHOD_CAN_EXTRACT_KNOWLEDGE}
+  LSeparator := '';
+  {$ENDIF}
+
+  // The anonymous method can extract knowledge from the assignment
+  FStringAnonymousMethod := function (const AValue: string): string
     begin
       // "abcd" --> "dbca dbca"
+      {$IFDEF ANONYMOUS_METHOD_CAN_EXTRACT_KNOWLEDGE}
+      LSeparator := LSeparator + '|';
+      Result := StringDuplicate(StringScrambler(AValue + LSeparator));
+      {$ELSE}
       Result := StringDuplicate(StringScrambler(AValue));
+      {$ENDIF}
     end;
+end;
+
+procedure TfrmMain.ScrambleAndDuplicate(AAnonymousMethod: TStringAnonymousMethod);
+var
+  LTmp: string;
+begin
+  LTmp := 'I''m an Anonymous Method!';
+  lbledtOutputString.Text := AAnonymousMethod(LTmp);
 end;
 
 function TfrmMain.StringDuplicate(const AValue: string): string;
