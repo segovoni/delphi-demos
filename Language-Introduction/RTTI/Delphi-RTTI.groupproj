@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C1715728-50FC-47F1-8EF4-B6D5DDEF375E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="RTTI-101\RTTI101.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="RTTI101">
+        <MSBuild Projects="RTTI-101\RTTI101.dproj"/>
+    </Target>
+    <Target Name="RTTI101:Clean">
+        <MSBuild Projects="RTTI-101\RTTI101.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RTTI101:Make">
+        <MSBuild Projects="RTTI-101\RTTI101.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="RTTI101"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="RTTI101:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="RTTI101:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
