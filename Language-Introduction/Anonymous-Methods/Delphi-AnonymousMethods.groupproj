@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B5DD6D93-6CCD-4755-8F48-295A5EB4883B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="101-Anonymous-Methods\AnonymousMethods101.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AnonymousMethods101">
+        <MSBuild Projects="101-Anonymous-Methods\AnonymousMethods101.dproj"/>
+    </Target>
+    <Target Name="AnonymousMethods101:Clean">
+        <MSBuild Projects="101-Anonymous-Methods\AnonymousMethods101.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AnonymousMethods101:Make">
+        <MSBuild Projects="101-Anonymous-Methods\AnonymousMethods101.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AnonymousMethods101"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AnonymousMethods101:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AnonymousMethods101:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
