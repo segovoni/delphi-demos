@@ -9,6 +9,12 @@
         <Projects Include="SampleCalculatorConsole.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\Reverse String\ReverseString.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Reverse String\ReverseStringLibrary.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +41,32 @@
     <Target Name="SampleCalculatorConsole:Make">
         <MSBuild Projects="SampleCalculatorConsole.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ReverseString">
+        <MSBuild Projects="..\Reverse String\ReverseString.dproj"/>
+    </Target>
+    <Target Name="ReverseString:Clean">
+        <MSBuild Projects="..\Reverse String\ReverseString.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ReverseString:Make">
+        <MSBuild Projects="..\Reverse String\ReverseString.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ReverseStringLibrary">
+        <MSBuild Projects="..\Reverse String\ReverseStringLibrary.dproj"/>
+    </Target>
+    <Target Name="ReverseStringLibrary:Clean">
+        <MSBuild Projects="..\Reverse String\ReverseStringLibrary.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ReverseStringLibrary:Make">
+        <MSBuild Projects="..\Reverse String\ReverseStringLibrary.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="SampleCalculatorVCL;SampleCalculatorConsole"/>
+        <CallTarget Targets="SampleCalculatorVCL;SampleCalculatorConsole;ReverseString;ReverseStringLibrary"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="SampleCalculatorVCL:Clean;SampleCalculatorConsole:Clean"/>
+        <CallTarget Targets="SampleCalculatorVCL:Clean;SampleCalculatorConsole:Clean;ReverseString:Clean;ReverseStringLibrary:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="SampleCalculatorVCL:Make;SampleCalculatorConsole:Make"/>
+        <CallTarget Targets="SampleCalculatorVCL:Make;SampleCalculatorConsole:Make;ReverseString:Make;ReverseStringLibrary:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

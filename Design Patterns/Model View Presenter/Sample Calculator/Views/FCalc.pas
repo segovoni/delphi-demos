@@ -15,9 +15,11 @@ type
     lbledtResult: TLabeledEdit;
     ComboBox1: TComboBox;
     lblOperation: TLabel;
+    btnPerformOperation1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnPerformOperationClick(Sender: TObject);
+    procedure btnPerformOperation1Click(Sender: TObject);
   private
     FCalcPresenter: TCalcPresenter;
   public
@@ -72,6 +74,23 @@ end;
 function TFCalculator.AskConfirmation(AValue: string): Boolean;
 begin
   result := (Application.MessageBox(PChar(AValue), APPTITLE, MB_YESNO) = IDYES);
+end;
+
+procedure TFCalculator.btnPerformOperation1Click(Sender: TObject);
+begin
+  if Application.MessageBox(PChar('Do you want to proceed with the complex operation: ' +
+                            ComboBox1.Text +
+                            ' between ' +
+                            lbledtValue1.Text + ' e ' +
+                            lbledtValue2.Text + ' ?'), PChar(Self.Caption), MB_YESNO) = IDYES then
+  begin
+    if (ComboBox1.Text = '+') then
+      lbledtResult.Text :=
+        IntToStr(StrToInt(lbledtValue1.Text) + StrToInt(lbledtValue2.Text))
+    else
+      lbledtResult.Text :=
+        IntToStr(StrToInt(lbledtValue1.Text) - StrToInt(lbledtValue2.Text));
+  end;
 end;
 
 procedure TFCalculator.btnPerformOperationClick(Sender: TObject);

@@ -35,8 +35,6 @@ function TViewCalcSimulator.AskConfirmation(AValue: string): Boolean;
 var
   LAnswer: string;
 begin
-  result := False;
-
   while True do
   begin
     WriteLn(AValue + ' (y/n)');
@@ -51,8 +49,9 @@ begin
       result := False;
       break;
     end
-    else
+    else begin
       WriteLn('Unrecognized response, specify "y" for Yes, "n" for No!');
+    end;
   end;
 end;
 
