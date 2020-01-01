@@ -1,6 +1,6 @@
 unit FAdapter;
 
-interface
+interface // = Public
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
@@ -18,6 +18,7 @@ type
     chbTarger: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure edtSourceChange(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     // Adapters
     FLabelAdapter: TLabelAdapter;
@@ -30,7 +31,7 @@ type
 var
   frmAdapter: TfrmAdapter;
 
-implementation
+implementation  // = Private
 
 {$R *.dfm}
 
@@ -50,6 +51,15 @@ begin
   FButtonAdapter := TButtonAdapter.Create(btnTarget);
   FEditAdapter := TEditAdapter.Create(edtTarget);
   FCheckAdapter := TCheckBoxAdapter.Create(chbTarger);
+end;
+
+procedure TfrmAdapter.FormDestroy(Sender: TObject);
+begin
+  FLabelAdapter.Free;
+  FLabelOneAdapter.Free;
+  FButtonAdapter.Free;
+  FEditAdapter.Free;
+  FCheckAdapter.Free;
 end;
 
 end.
