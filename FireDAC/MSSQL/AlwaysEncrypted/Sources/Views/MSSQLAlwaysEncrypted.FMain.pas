@@ -25,10 +25,19 @@ type
     lbledtUserName: TLabeledEdit;
     lbledtPassword: TLabeledEdit;
     btnConnect: TButton;
+    pnlUpdate: TPanel;
+    lbledtUpdateStmt: TLabeledEdit;
+    lbledtEncryptedTableName: TLabeledEdit;
+    lbledtSet: TLabeledEdit;
+    lbledtEncryptedColumnName: TLabeledEdit;
+    lbledtEqualTo: TLabeledEdit;
+    lbledtNonEncryptedValue: TLabeledEdit;
+    btnUpdate: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
+    procedure btnUpdateClick(Sender: TObject);
   private
     FAlwaysEncryptedMainPresenter: TAlwaysEncryptedMainPresenter;
   public
@@ -41,9 +50,13 @@ type
     function GetPassword: string;
     function GetSELECTSQLText: string;
     function GetdsQueryEncryptedData: TDataSource;
+    function GetEncryptedTableName: string;
+    function GetEncryptedColumnName: string;
+    function GetNonEncryptedValue: string;
     // output (procedure)
     procedure Connect;
     procedure OpenQuery;
+    procedure ExecUpdate;
     procedure DisplayMessage(AValue: string);
     // input/output (function with params)
     function AskConfirmation(AValue: string): Boolean;
@@ -74,6 +87,11 @@ end;
 procedure TfrmAlwaysEncryptedMain.btnOpenQueryClick(Sender: TObject);
 begin
   OpenQuery;
+end;
+
+procedure TfrmAlwaysEncryptedMain.btnUpdateClick(Sender: TObject);
+begin
+  ExecUpdate;
 end;
 
 procedure TfrmAlwaysEncryptedMain.Connect;
@@ -116,6 +134,21 @@ begin
   result := dsQueryEncryptedData;
 end;
 
+function TfrmAlwaysEncryptedMain.GetEncryptedColumnName: string;
+begin
+  result := lbledtEncryptedColumnName.Text;
+end;
+
+function TfrmAlwaysEncryptedMain.GetEncryptedTableName: string;
+begin
+  result := lbledtEncryptedTableName.Text;
+end;
+
+function TfrmAlwaysEncryptedMain.GetNonEncryptedValue: string;
+begin
+  result := lbledtNonEncryptedValue.Text;
+end;
+
 function TfrmAlwaysEncryptedMain.GetPassword: string;
 begin
   result := lbledtPassword.Text;
@@ -139,6 +172,11 @@ end;
 procedure TfrmAlwaysEncryptedMain.OpenQuery;
 begin
   FAlwaysEncryptedMainPresenter.OpenQuery;
+end;
+
+procedure TfrmAlwaysEncryptedMain.ExecUpdate;
+begin
+  FAlwaysEncryptedMainPresenter.Update;
 end;
 
 end.

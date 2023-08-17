@@ -4,8 +4,8 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'SQL Server Always Encrypted Main Form'
-  ClientHeight = 359
-  ClientWidth = 819
+  ClientHeight = 508
+  ClientWidth = 776
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,10 +18,10 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
   PixelsPerInch = 96
   TextHeight = 13
   object pnlQueryEncryptedData: TRelativePanel
-    Left = 281
+    Left = 251
     Top = 0
-    Width = 536
-    Height = 359
+    Width = 525
+    Height = 378
     ControlCollection = <
       item
         Control = dbgQueryEncryptedData
@@ -53,13 +53,14 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 0
+    ExplicitHeight = 365
     DesignSize = (
-      536
-      359)
+      525
+      378)
     object dbgQueryEncryptedData: TDBGrid
       Left = 6
       Top = 8
-      Width = 523
+      Width = 515
       Height = 158
       Align = alTop
       DataSource = dsQueryEncryptedData
@@ -73,7 +74,7 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     object memoSELECT: TMemo
       Left = 6
       Top = 172
-      Width = 523
+      Width = 515
       Height = 114
       Hint = 'SELECT ColumnName FROM dbo.TableName;'
       Anchors = []
@@ -85,7 +86,7 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     object btnOpenQuery: TButton
       Left = 6
       Top = 308
-      Width = 523
+      Width = 515
       Height = 39
       Anchors = []
       Caption = 'Open query'
@@ -96,11 +97,12 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
   object pnlConnection: TPanel
     Left = 0
     Top = 0
-    Width = 281
-    Height = 359
+    Width = 251
+    Height = 378
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 1
+    ExplicitHeight = 365
     object lbledtDriverID: TLabeledEdit
       Left = 8
       Top = 32
@@ -177,6 +179,95 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
       TabOrder = 6
       TabStop = False
       OnClick = btnConnectClick
+    end
+  end
+  object pnlUpdate: TPanel
+    Left = 0
+    Top = 378
+    Width = 776
+    Height = 130
+    Align = alBottom
+    TabOrder = 2
+    ExplicitTop = 392
+    object lbledtUpdateStmt: TLabeledEdit
+      Left = 6
+      Top = 32
+      Width = 67
+      Height = 21
+      EditLabel.Width = 39
+      EditLabel.Height = 13
+      EditLabel.Caption = 'UPDATE'
+      Enabled = False
+      TabOrder = 0
+      Text = 'UPDATE'
+    end
+    object lbledtEncryptedTableName: TLabeledEdit
+      Left = 79
+      Top = 32
+      Width = 210
+      Height = 21
+      EditLabel.Width = 55
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Table name'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      TextHint = 'example dbo.Person'
+    end
+    object lbledtSet: TLabeledEdit
+      Left = 295
+      Top = 32
+      Width = 41
+      Height = 21
+      EditLabel.Width = 18
+      EditLabel.Height = 13
+      EditLabel.Caption = 'SET'
+      Enabled = False
+      TabOrder = 2
+      Text = 'SET'
+    end
+    object lbledtEncryptedColumnName: TLabeledEdit
+      Left = 342
+      Top = 32
+      Width = 163
+      Height = 21
+      EditLabel.Width = 145
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Encrypted column name (text)'
+      TabOrder = 3
+      TextHint = 'example SSN'
+    end
+    object lbledtEqualTo: TLabeledEdit
+      Left = 511
+      Top = 32
+      Width = 26
+      Height = 21
+      EditLabel.Width = 8
+      EditLabel.Height = 13
+      EditLabel.Caption = '='
+      Enabled = False
+      TabOrder = 4
+      Text = '='
+    end
+    object lbledtNonEncryptedValue: TLabeledEdit
+      Left = 543
+      Top = 32
+      Width = 229
+      Height = 21
+      EditLabel.Width = 132
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Non-encrypted value (text)'
+      TabOrder = 5
+      TextHint = 'example 795-73-9838'
+    end
+    object btnUpdate: TButton
+      Left = 6
+      Top = 72
+      Width = 766
+      Height = 39
+      Caption = 'Update'
+      TabOrder = 6
+      OnClick = btnUpdateClick
     end
   end
   object dsQueryEncryptedData: TDataSource

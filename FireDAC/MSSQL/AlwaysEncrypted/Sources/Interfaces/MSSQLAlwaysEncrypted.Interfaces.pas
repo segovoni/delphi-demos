@@ -17,9 +17,13 @@ type
     function GetPassword: string;
     function GetSELECTSQLText: string;
     function GetdsQueryEncryptedData: TDataSource;
+    function GetEncryptedTableName: string;
+    function GetEncryptedColumnName: string;
+    function GetNonEncryptedValue: string;
     // output (procedure)
     procedure Connect;
     procedure OpenQuery;
+    procedure ExecUpdate;
     procedure DisplayMessage(AValue: string);
     // input/output (function with params)
     function AskConfirmation(AValue: string): Boolean;

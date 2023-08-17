@@ -14,12 +14,14 @@ type
     constructor Create(AMainView: IMainView);
     procedure Connect;
     procedure OpenQuery;
+    procedure Update;
   end;
 
 implementation
 
 uses
-  MSSQLAlwaysEncrypted.DataModule, Data.DB;
+  MSSQLAlwaysEncrypted.DataModule, Data.DB, FireDAC.Comp.Client,
+  FireDAC.Stan.Param;
 
 { TAlwaysEncryptedMainPresenter }
 
@@ -84,6 +86,36 @@ begin
   end
   else
     FMainView.DisplayMessage('SQL query text is empty!');
+end;
+
+procedure TAlwaysEncryptedMainPresenter.Update;
+var
+  LSQL: string;
+  LQryUpdate: TFDQuery;
+begin
+
+  //LSQL :=
+  //  'UPDATE ' +
+  //  FMainView.GetEncryptedTableName + ' ' +
+  //  'SET ' +
+  //  FMainView.GetEncryptedColumnName + ' = :NonEncryptedValue';
+
+  LSQL :=
+    'DECLARE @Value CHAR(11) = ''' + FMainView.GetNonEncryptedValue + '''; ' +
+    'UPDATE ' +
+    FMainView.GetEncryptedTableName + ' ' +
+    'SET ' +
+    FMainView.GetEncryptedColumnName + ' = @Value';
+
+  LQryUpdate := TFDQuery.Create(nil);
+  try
+    LQryUpdate.Connection := DM.FDConnection;
+    LQryUpdate.SQL.Text := LSQL;
+    //LQryUpdate.ParamByName('NonEncryptedValue').Value := FMainView.GetNonEncryptedValue;
+    LQryUpdate.ExecSQL;
+  finally
+    LQryUpdate.Free;
+  end;
 end;
 
 end.
