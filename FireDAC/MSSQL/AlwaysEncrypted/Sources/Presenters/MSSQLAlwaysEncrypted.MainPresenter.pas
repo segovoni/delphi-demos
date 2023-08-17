@@ -13,12 +13,13 @@ type
   public
     constructor Create(AMainView: IMainView);
     procedure Connect;
+    procedure OpenQuery;
   end;
 
 implementation
 
 uses
-  MSSQLAlwaysEncrypted.DataModule;
+  MSSQLAlwaysEncrypted.DataModule, Data.DB;
 
 { TAlwaysEncryptedMainPresenter }
 
@@ -55,12 +56,34 @@ begin
   DM.FDConnection.Connected := True;
 
   if DM.FDConnection.Connected then
-    FMainView.DisplayMessage('Connected!!');
+    FMainView.DisplayMessage('Connected!')
+  else
+    FMainView.DisplayMessage('Not connected, see the previous error!');
+
 end;
 
 constructor TAlwaysEncryptedMainPresenter.Create(AMainView: IMainView);
 begin
   FMainView := AMainView
+end;
+
+procedure TAlwaysEncryptedMainPresenter.OpenQuery;
+var
+  LSQL: string;
+  LDataSource: TDataSource;
+begin
+  LSQL := FMainView.GetSELECTSQLText;
+
+  if (LSQL <> '') then
+  begin
+    LDataSource := FMainView.GetdsQueryEncryptedData;
+    LDataSource.DataSet := DM.FDQrySelectEncryptedData;
+    DM.FDQrySelectEncryptedData.Close;
+    DM.FDQrySelectEncryptedData.SQL.Text := LSQL;
+    DM.FDQrySelectEncryptedData.Open;
+  end
+  else
+    FMainView.DisplayMessage('SQL query text is empty!');
 end;
 
 end.

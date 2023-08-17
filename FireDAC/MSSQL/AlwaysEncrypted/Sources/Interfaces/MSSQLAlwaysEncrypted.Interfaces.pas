@@ -2,6 +2,9 @@ unit MSSQLAlwaysEncrypted.Interfaces;
 
 interface
 
+uses
+  Data.DB;
+
 type
   IMainView = interface
     ['{60C0203E-A043-4751-B2E7-6E7CEC418C43}']
@@ -12,10 +15,13 @@ type
     function GetDatabaseName: string;
     function GetUserName: string;
     function GetPassword: string;
+    function GetSELECTSQLText: string;
+    function GetdsQueryEncryptedData: TDataSource;
     // output (procedure)
     procedure Connect;
+    procedure OpenQuery;
     procedure DisplayMessage(AValue: string);
-    // input/output
+    // input/output (function with params)
     function AskConfirmation(AValue: string): Boolean;
   end;
 

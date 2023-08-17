@@ -6,4 +6,9 @@ object DM: TDM
     Left = 56
     Top = 40
   end
+  object FDQrySelectEncryptedData: TFDQuery
+    Connection = FDConnection
+    Left = 72
+    Top = 104
+  end
 end
