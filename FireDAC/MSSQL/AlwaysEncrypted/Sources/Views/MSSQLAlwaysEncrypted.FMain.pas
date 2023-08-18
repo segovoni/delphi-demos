@@ -33,6 +33,10 @@ type
     lbledtEqualTo: TLabeledEdit;
     lbledtNonEncryptedValue: TLabeledEdit;
     btnUpdate: TButton;
+    lbledtWhereClause: TLabeledEdit;
+    lbledtColumnNameWhere: TLabeledEdit;
+    lbledtEqualToWhere: TLabeledEdit;
+    lbledtColumnValueWhere: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
@@ -53,6 +57,8 @@ type
     function GetEncryptedTableName: string;
     function GetEncryptedColumnName: string;
     function GetNonEncryptedValue: string;
+    function GetColumnNameWhere: string;
+    function GetColumnValueWhere: string;
     // output (procedure)
     procedure Connect;
     procedure OpenQuery;
@@ -112,6 +118,16 @@ end;
 procedure TfrmAlwaysEncryptedMain.FormDestroy(Sender: TObject);
 begin
   FAlwaysEncryptedMainPresenter.Free;
+end;
+
+function TfrmAlwaysEncryptedMain.GetColumnNameWhere: string;
+begin
+  result := lbledtColumnNameWhere.Text;
+end;
+
+function TfrmAlwaysEncryptedMain.GetColumnValueWhere: string;
+begin
+  result := lbledtColumnValueWhere.Text;
 end;
 
 function TfrmAlwaysEncryptedMain.GetDatabaseName: string;

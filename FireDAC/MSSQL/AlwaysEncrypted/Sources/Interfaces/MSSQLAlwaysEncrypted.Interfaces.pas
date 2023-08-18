@@ -20,6 +20,8 @@ type
     function GetEncryptedTableName: string;
     function GetEncryptedColumnName: string;
     function GetNonEncryptedValue: string;
+    function GetColumnNameWhere: string;
+    function GetColumnValueWhere: string;
     // output (procedure)
     procedure Connect;
     procedure OpenQuery;

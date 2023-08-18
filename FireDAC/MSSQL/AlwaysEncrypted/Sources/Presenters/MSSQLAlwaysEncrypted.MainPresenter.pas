@@ -101,7 +101,13 @@ begin
     'UPDATE ' +
     FMainView.GetEncryptedTableName + ' ' +
     'SET ' +
-    FMainView.GetEncryptedColumnName + ' = :NonEncryptedValue';
+    FMainView.GetEncryptedColumnName + ' = :NonEncryptedValue ';
+
+  if (FMainView.GetColumnNameWhere <> '') then
+  begin
+    LSQL := LSQL +
+      'WHERE (' + FMainView.GetColumnNameWhere + ' = ''' + FMainView.GetColumnValueWhere + ''')';
+  end;
 
   DM.FDQryUpdateEncryptedData.Close;
   DM.FDQryUpdateEncryptedData.SQL.Text := LSQL;

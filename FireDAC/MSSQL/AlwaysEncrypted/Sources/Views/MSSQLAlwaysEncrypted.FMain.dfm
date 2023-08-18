@@ -4,7 +4,7 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'SQL Server Always Encrypted Main Form'
-  ClientHeight = 508
+  ClientHeight = 527
   ClientWidth = 776
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Left = 251
     Top = 0
     Width = 525
-    Height = 378
+    Height = 376
     ControlCollection = <
       item
         Control = dbgQueryEncryptedData
@@ -53,9 +53,10 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 0
+    ExplicitHeight = 378
     DesignSize = (
       525
-      378)
+      376)
     object dbgQueryEncryptedData: TDBGrid
       Left = 6
       Top = 8
@@ -97,10 +98,11 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Left = 0
     Top = 0
     Width = 251
-    Height = 378
+    Height = 376
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 1
+    ExplicitHeight = 378
     object lbledtDriverID: TLabeledEdit
       Left = 8
       Top = 32
@@ -181,9 +183,9 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
   end
   object pnlUpdate: TPanel
     Left = 0
-    Top = 378
+    Top = 376
     Width = 776
-    Height = 130
+    Height = 151
     Align = alBottom
     TabOrder = 2
     object lbledtUpdateStmt: TLabeledEdit
@@ -259,12 +261,58 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     end
     object btnUpdate: TButton
       Left = 6
-      Top = 72
+      Top = 104
       Width = 766
       Height = 39
       Caption = 'Update'
-      TabOrder = 6
+      TabOrder = 10
       OnClick = btnUpdateClick
+    end
+    object lbledtWhereClause: TLabeledEdit
+      Left = 6
+      Top = 77
+      Width = 67
+      Height = 21
+      EditLabel.Width = 36
+      EditLabel.Height = 13
+      EditLabel.Caption = 'WHERE'
+      Enabled = False
+      TabOrder = 6
+      Text = 'WHERE'
+    end
+    object lbledtColumnNameWhere: TLabeledEdit
+      Left = 79
+      Top = 77
+      Width = 210
+      Height = 21
+      EditLabel.Width = 64
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Column name'
+      TabOrder = 7
+      TextHint = 'example FirstName'
+    end
+    object lbledtEqualToWhere: TLabeledEdit
+      Left = 295
+      Top = 77
+      Width = 41
+      Height = 21
+      EditLabel.Width = 8
+      EditLabel.Height = 13
+      EditLabel.Caption = '='
+      Enabled = False
+      TabOrder = 8
+      Text = '='
+    end
+    object lbledtColumnValueWhere: TLabeledEdit
+      Left = 342
+      Top = 77
+      Width = 174
+      Height = 21
+      EditLabel.Width = 101
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Non-encrypted value'
+      TabOrder = 9
+      TextHint = 'example Jane'
     end
   end
   object dsQueryEncryptedData: TDataSource
