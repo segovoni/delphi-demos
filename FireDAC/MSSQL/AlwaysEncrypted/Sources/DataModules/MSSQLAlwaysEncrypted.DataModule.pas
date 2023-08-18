@@ -13,6 +13,7 @@ type
   TDM = class(TDataModule)
     FDConnection: TFDConnection;
     FDQrySelectEncryptedData: TFDQuery;
+    FDQryUpdateEncryptedData: TFDQuery;
   private
   public
   end;

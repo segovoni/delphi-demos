@@ -7,8 +7,14 @@ object DM: TDM
     Top = 40
   end
   object FDQrySelectEncryptedData: TFDQuery
+    AutoCalcFields = False
     Connection = FDConnection
-    Left = 72
+    Left = 120
     Top = 104
+  end
+  object FDQryUpdateEncryptedData: TFDQuery
+    Connection = FDConnection
+    Left = 160
+    Top = 48
   end
 end

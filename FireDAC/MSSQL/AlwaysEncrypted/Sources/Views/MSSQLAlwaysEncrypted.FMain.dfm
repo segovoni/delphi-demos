@@ -53,7 +53,6 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 0
-    ExplicitHeight = 365
     DesignSize = (
       525
       378)
@@ -102,7 +101,6 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Align = alLeft
     Alignment = taRightJustify
     TabOrder = 1
-    ExplicitHeight = 365
     object lbledtDriverID: TLabeledEdit
       Left = 8
       Top = 32
@@ -188,7 +186,6 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     Height = 130
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 392
     object lbledtUpdateStmt: TLabeledEdit
       Left = 6
       Top = 32
@@ -212,7 +209,7 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
-      TextHint = 'example dbo.Person'
+      TextHint = 'mandatory example dbo.Person'
     end
     object lbledtSet: TLabeledEdit
       Left = 295
@@ -229,16 +226,16 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
     object lbledtEncryptedColumnName: TLabeledEdit
       Left = 342
       Top = 32
-      Width = 163
+      Width = 174
       Height = 21
-      EditLabel.Width = 145
+      EditLabel.Width = 165
       EditLabel.Height = 13
-      EditLabel.Caption = 'Encrypted column name (text)'
+      EditLabel.Caption = 'Encrypted column name - char(11)'
       TabOrder = 3
-      TextHint = 'example SSN'
+      TextHint = 'mandatory example SSN'
     end
     object lbledtEqualTo: TLabeledEdit
-      Left = 511
+      Left = 522
       Top = 32
       Width = 26
       Height = 21
@@ -250,15 +247,15 @@ object frmAlwaysEncryptedMain: TfrmAlwaysEncryptedMain
       Text = '='
     end
     object lbledtNonEncryptedValue: TLabeledEdit
-      Left = 543
+      Left = 554
       Top = 32
-      Width = 229
+      Width = 218
       Height = 21
-      EditLabel.Width = 132
+      EditLabel.Width = 152
       EditLabel.Height = 13
-      EditLabel.Caption = 'Non-encrypted value (text)'
+      EditLabel.Caption = 'Non-encrypted value - char(11)'
       TabOrder = 5
-      TextHint = 'example 795-73-9838'
+      TextHint = 'mandatory example 795-73-9838'
     end
     object btnUpdate: TButton
       Left = 6

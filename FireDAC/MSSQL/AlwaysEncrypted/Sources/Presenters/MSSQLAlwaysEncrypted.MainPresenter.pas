@@ -91,31 +91,26 @@ end;
 procedure TAlwaysEncryptedMainPresenter.Update;
 var
   LSQL: string;
-  LQryUpdate: TFDQuery;
 begin
-
-  //LSQL :=
-  //  'UPDATE ' +
-  //  FMainView.GetEncryptedTableName + ' ' +
-  //  'SET ' +
-  //  FMainView.GetEncryptedColumnName + ' = :NonEncryptedValue';
+  // You cannot use local variables for Always Encrypted columns,
+  // they must come from client-side parameters.
+  // In SSMS it works because SSMS parses your script and pulls out the variables
+  // into parameters, but in Delphi or other clients you must parameterize it yourself
 
   LSQL :=
-    'DECLARE @Value CHAR(11) = ''' + FMainView.GetNonEncryptedValue + '''; ' +
     'UPDATE ' +
     FMainView.GetEncryptedTableName + ' ' +
     'SET ' +
-    FMainView.GetEncryptedColumnName + ' = @Value';
+    FMainView.GetEncryptedColumnName + ' = :NonEncryptedValue';
 
-  LQryUpdate := TFDQuery.Create(nil);
-  try
-    LQryUpdate.Connection := DM.FDConnection;
-    LQryUpdate.SQL.Text := LSQL;
-    //LQryUpdate.ParamByName('NonEncryptedValue').Value := FMainView.GetNonEncryptedValue;
-    LQryUpdate.ExecSQL;
-  finally
-    LQryUpdate.Free;
-  end;
+  DM.FDQryUpdateEncryptedData.Close;
+  DM.FDQryUpdateEncryptedData.SQL.Text := LSQL;
+  DM.FDQryUpdateEncryptedData.ParamByName('NonEncryptedValue').DataType := ftFixedChar;
+  DM.FDQryUpdateEncryptedData.ParamByName('NonEncryptedValue').Size := 11;
+  DM.FDQryUpdateEncryptedData.Prepare;
+
+  DM.FDQryUpdateEncryptedData.ParamByName('NonEncryptedValue').AsString := FMainView.GetNonEncryptedValue;
+  DM.FDQryUpdateEncryptedData.ExecSQL;
 end;
 
 end.
