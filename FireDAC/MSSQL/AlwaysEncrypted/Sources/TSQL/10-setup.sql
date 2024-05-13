@@ -25,6 +25,25 @@ END;
 GO
 
 
+-- Create login with SID
+IF EXISTS (SELECT principal_id FROM sys.sql_logins WHERE name = 'Delphi_User')
+  DROP LOGIN [Delphi_User];
+
+CREATE LOGIN [Delphi_User] WITH
+  PASSWORD = 'DelphiDay2024!'
+  ,SID = 0x7427B4ADC1F5F041AAD461C29DCDA151;
+
+SELECT
+  [name]
+  ,principal_id
+  ,[sid]
+  ,[type_desc]
+FROM
+  sys.sql_logins
+WHERE [name] = 'Delphi_User';
+GO
+
+
 CREATE DATABASE [AlwaysEncryptedDB]
  ON  PRIMARY 
  (
@@ -47,36 +66,56 @@ USE [AlwaysEncryptedDB];
 GO
 
 
-CREATE TABLE dbo.Person
+CREATE TABLE dbo.Persons
 (
   ID INTEGER IDENTITY(1, 1) NOT NULL
-  ,FirstName NVARCHAR(64) NOT NULL
-  ,LastName NVARCHAR(64) NOT NULL
+  ,FirstName NVARCHAR(32) NOT NULL
+  ,LastName NVARCHAR(32) NOT NULL
   ,SocialSecurityNumber CHAR(11) NOT NULL
     -- COLLATE Latin1_General_BIN2 NOT NULL
   ,CreditCardNumber CHAR(19)
     -- COLLATE Latin1_General_BIN2 NOT NULL
-  ,Salary MONEY NOT NULL
+  ,Salary DECIMAL(19, 4) NOT NULL
     -- COLLATE Latin1_General_BIN2 NOT NULL
 );
 GO
 
 
-INSERT INTO dbo.Person
+INSERT INTO dbo.Persons
   (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
-  ('Rob', 'Walters', '795-73-9838', '1111-2222-3333-4444', $31692)
-  ,('Gail', 'Erickson', '311-23-4578', '5555-6666-7777-8888', $40984);
+  ('Rob', 'Walters', '795-73-9838', '1111-2222-3333-4444', 31692.50)
+  ,('Gail', 'Erickson', '311-23-4578', '5555-6666-7777-8888', 40984.30);
 GO
 
 
 SELECT
-  SocialSecurityNumber
-  ,CreditCardNumber
-  ,Salary
-  ,ID
+  ID
   ,FirstName
   ,LastName
+  ,SocialSecurityNumber
+  ,CreditCardNumber
+  ,Salary
 FROM
-  dbo.Person;
+  dbo.Persons;
+GO
+
+
+-- Create database user from login
+CREATE USER [Delphi_User] FOR LOGIN [Delphi_User]
+  WITH DEFAULT_SCHEMA = dbo;
+
+EXEC sp_addrolemember 'db_datareader', 'Delphi_User';
+EXEC sp_addrolemember 'db_datawriter', 'Delphi_User';
+
+
+SELECT * FROM master.sys.server_principals WHERE [sid] = 0x7427B4ADC1F5F041AAD461C29DCDA151
+GO
+
+
+-- Database master key (CMK)
+SELECT * FROM sys.column_master_keys;
+
+-- Column encryption keys (CEK)
+SELECT * FROM sys.column_encryption_keys;
 GO
