@@ -15,25 +15,25 @@ GO
 
 
 -- Enable Always Encrypted (column encryption) set to disabled
--- Query the dbo.Person
+-- Query the dbo.Persons
 
 -- SSMS will not be able to decrypt the data stored in the encrypted columns;
 -- the following query will return the encrypted data
-SELECT * FROM dbo.Person;
+SELECT * FROM dbo.Persons;
 GO
 
 
 -- Enable Always Encrypted (column encryption) set to enabled
 -- SSMS will attempt to decrypt the data stored in the encrypted columns
 -- using the previously created cryptographic keys
-SELECT * FROM dbo.Person;
+SELECT * FROM dbo.Persons;
 GO
 
 
--- Let’s try to insert a new record in the dbo.Person
+-- Let's try to insert a new record in the dbo.Persons
 
 -- This query will fail
-INSERT INTO dbo.Person
+INSERT INTO dbo.Persons
   (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
   ('Janice', 'Galvin', '327-89-2514', '9999-1111-2222-3333', $38115);
@@ -58,7 +58,7 @@ DECLARE
   ,@CreditCardNumber CHAR(19) = '9999-1111-2222-3333'
   ,@Salary MONEY = $38115;
 
-INSERT INTO dbo.Person
+INSERT INTO dbo.Persons
   (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
   ('Janice', 'Galvin', @SocialSecurityNumber, @CreditCardNumber, @Salary);
@@ -79,7 +79,7 @@ DECLARE
   ,@CreditCardNumber CHAR(19) = '9999-1111-2222-3333'
   ,@Salary MONEY = $38115;
 
-INSERT INTO dbo.Person
+INSERT INTO dbo.Persons
   (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
   ('Janice', 'Galvin', @SocialSecurityNumber, @CreditCardNumber, @Salary);
@@ -91,7 +91,7 @@ DECLARE
   @Salary MONEY = $38615;
 
 UPDATE
-  dbo.Person
+  dbo.Persons
 SET
   Salary = @Salary
 WHERE
@@ -103,7 +103,7 @@ DECLARE
   @SocialSecurityNumber CHAR(11) = '795-00-0000';
 
 UPDATE
-  dbo.Person
+  dbo.Persons
 SET
   SocialSecurityNumber = @SocialSecurityNumber
 WHERE
@@ -115,7 +115,7 @@ GO
 DECLARE @NonEncryptedValue CHAR(11) = '795-00-0000';
 
 UPDATE
-  dbo.Person
+  dbo.Persons
 SET
   SocialSecurityNumber = @NonEncryptedValue;
 GO
