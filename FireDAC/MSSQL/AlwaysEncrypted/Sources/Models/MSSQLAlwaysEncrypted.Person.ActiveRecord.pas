@@ -40,12 +40,12 @@ type
     FLastName: string;
     FSocialSecurityNumber: string;//[11];
     FCreditCardNumber: string;//[19];
-    FSalary: Double;
+    FSalary: Currency;
     procedure SetFirstName(const AValue: string);
     procedure SetLastName(const AValue: string);
     procedure SetSocialSecurityNumber(const AValue: string);
     procedure SetCreditCardNumber(const AValue: string);
-    procedure SetSalary(const AValue: Double);
+    procedure SetSalary(const AValue: Currency);
   private
     class function LoadPerson(AReader: TFDAdaptedDataSet): TPersonActiveRecord;
     class function FillPersonList(const ASQL: string): TPersons;
@@ -61,7 +61,7 @@ type
     property LastName: string read FLastName write SetLastName;
     property SocialSecurityNumber: string read FSocialSecurityNumber write SetSocialSecurityNumber;
     property CreditCardNumber: string read FCreditCardNumber write SetCreditCardNumber;
-    property Salary: Double read FSalary write SetSalary;
+    property Salary: Currency read FSalary write SetSalary;
   end;
 
   TPersons = class(TObjectList<TPersonActiveRecord>);
@@ -69,7 +69,7 @@ type
 implementation
 
 uses
-  MSSQLAlwaysEncrypted.DataModule, System.SysUtils, Data.DB;
+  MSSQLAlwaysEncrypted.DataModule, System.SysUtils, Data.DB, FireDAC.Stan.Param;
 
 { TPersonActiveRecord }
 
@@ -176,7 +176,7 @@ begin
   result.FLastName := AReader.fields[2].AsString;
   result.FSocialSecurityNumber := AReader.fields[3].AsString;
   result.FCreditCardNumber := AReader.fields[4].AsString;
-  result.FSalary := AReader.fields[5].AsFloat;
+  result.FSalary := AReader.fields[5].AsCurrency;
 end;
 
 procedure TPersonActiveRecord.SetCreditCardNumber(const AValue: string);
@@ -194,7 +194,7 @@ begin
   FLastName := AValue;
 end;
 
-procedure TPersonActiveRecord.SetSalary(const AValue: Double);
+procedure TPersonActiveRecord.SetSalary(const AValue: Currency);
 begin
   FSalary := AValue;
 end;
