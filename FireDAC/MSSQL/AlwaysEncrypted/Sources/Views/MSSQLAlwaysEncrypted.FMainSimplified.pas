@@ -12,7 +12,6 @@ uses
 type
   TfrmAlwaysEncryptedMainSimplified = class(TForm, IMainSimplifiedView)
     cpgAlwaysEncrypted: TCategoryPanelGroup;
-    pnlC: TPanel;
     cpConnection: TCategoryPanel;
     lbledtDriverID: TLabeledEdit;
     lbledtServerName: TLabeledEdit;
@@ -28,13 +27,13 @@ type
     memoSELECT: TMemo;
     dsQueryEncryptedData: TDataSource;
     btnOpenQuery: TButton;
-    CategoryPanel1: TCategoryPanel;
+    cpUpdatePerson: TCategoryPanel;
     btnUpdate: TButton;
     lbledtFirstName: TLabeledEdit;
     lbledtLastName: TLabeledEdit;
-    lbledtSocialSecurityNumber: TDBLabeledEdit;
     lbledtCreditCardNumber: TLabeledEdit;
     lbledtSalary: TLabeledEdit;
+    lbledtSocialSecurityNumber: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -64,8 +63,7 @@ type
     // Output (procedure)
     procedure Connect;
     procedure OpenQuery;
-    procedure Update;
-    procedure DisplayPerson;
+    procedure UpdatePerson;
     procedure DisplayFirstName(AValue: string);
     procedure DisplayLastName(AValue: string);
     procedure DisplaySocialSecurityNumber(AValue: string);
@@ -98,7 +96,7 @@ end;
 
 procedure TfrmAlwaysEncryptedMainSimplified.btnUpdateClick(Sender: TObject);
 begin
-  Update;
+  UpdatePerson;
 end;
 
 procedure TfrmAlwaysEncryptedMainSimplified.Connect;
@@ -125,11 +123,6 @@ end;
 procedure TfrmAlwaysEncryptedMainSimplified.DisplayMessage(AValue: string);
 begin
   Application.MessageBox(PChar(AValue), APPTITLE, MB_OK);
-end;
-
-procedure TfrmAlwaysEncryptedMainSimplified.DisplayPerson;
-begin
-
 end;
 
 procedure TfrmAlwaysEncryptedMainSimplified.DisplaySalary(AValue: Currency);
@@ -202,7 +195,7 @@ end;
 
 function TfrmAlwaysEncryptedMainSimplified.GetSalary: Currency;
 begin
-  result := 1000;
+  result := StrToFloat(lbledtSalary.Text);
 end;
 
 function TfrmAlwaysEncryptedMainSimplified.GetSELECTSQLText: string;
@@ -244,9 +237,9 @@ begin
   lbledtPassword.Text := 'DelphiDay2024!';
 end;
 
-procedure TfrmAlwaysEncryptedMainSimplified.Update;
+procedure TfrmAlwaysEncryptedMainSimplified.UpdatePerson;
 begin
-  FAlwaysEncryptedMainSimplifiedPresenter.Update;
+  FAlwaysEncryptedMainSimplifiedPresenter.UpdatePerson;
 end;
 
 end.
