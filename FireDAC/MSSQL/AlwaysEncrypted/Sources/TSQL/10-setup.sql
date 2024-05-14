@@ -84,8 +84,8 @@ GO
 INSERT INTO dbo.Persons
   (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
-  ('Rob', 'Walters', '795-73-9838', '1111-2222-3333-4444', 31692.50)
-  ,('Gail', 'Erickson', '311-23-4578', '5555-6666-7777-8888', 40984.30);
+  ('Rob', 'Walters', '1520273859', '372305256328259', 31692)
+  ,('Gail', 'Erickson', '4520283752', '502301225345239', 40984);
 GO
 
 
