@@ -69,8 +69,8 @@ GO
 CREATE TABLE dbo.Persons
 (
   ID INTEGER IDENTITY(1, 1) NOT NULL
-  ,FirstName NVARCHAR(32) NOT NULL
-  ,LastName NVARCHAR(32) NOT NULL
+  ,FirstName NVARCHAR(16) NOT NULL
+  ,LastName NVARCHAR(16) NOT NULL
   ,SocialSecurityNumber CHAR(11) NOT NULL
     -- COLLATE Latin1_General_BIN2 NOT NULL
   ,CreditCardNumber CHAR(19)
