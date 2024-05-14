@@ -14,7 +14,7 @@ type
     constructor Create(AMainSimplifiedView: IMainSimplifiedView);
     procedure Connect;
     procedure OpenQuery;
-    procedure Update;
+    procedure UpdatePerson;
     procedure DisplayPerson;
   end;
 
@@ -120,7 +120,7 @@ begin
     FMainSimplifiedView.DisplayMessage('SQL query text is empty!');
 end;
 
-procedure TAlwaysEncryptedMainSimplifiedPresenter.Update;
+procedure TAlwaysEncryptedMainSimplifiedPresenter.UpdatePerson;
 var
   LPersonAR: TPersonActiveRecord;
 begin
