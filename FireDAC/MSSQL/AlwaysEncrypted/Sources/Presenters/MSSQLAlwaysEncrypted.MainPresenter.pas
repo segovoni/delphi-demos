@@ -45,15 +45,30 @@ begin
   DM.FDConnection.Params.Clear;
 
   DM.FDConnection.Params.DriverID := LDriverID;
-  DM.FDConnection.Params.Add('DataSource='+LDataSource);
+  DM.FDConnection.Params.Add('DataSource=' + LDataSource);
+  DM.FDConnection.Params.Add('Server=' + LServerName);
   DM.FDConnection.Params.Database := LDatabaseName;
   DM.FDConnection.Params.UserName := LUserName;
   DM.FDConnection.Params.Password := LPassword;
+  {
   DM.FDConnection.Params.Add('ODBCAdvanced=Trusted_Connection=No;' +
     'APP=Professional;' +
     'WSID='+LServerName+';' +
     'TrustServerCertificate=Yes;' +
     'ColumnEncryption=Enabled');
+  }
+  //DM.FDConnection.Params.Add('ODBCAdvanced=Trusted_Connection=No');
+  //DM.FDConnection.Params.Add('ODBCAdvanced=TrustServerCertificate=Yes');
+  DM.FDConnection.Params.Add('APP=Professional');
+  DM.FDConnection.Params.Add('WSID='+LServerName);
+
+  // FireDAC connection configured to encrypt/decrypt data before letting SQL Server
+  // or Azure SQL manage it. Enable both parameter encryption and result set
+  // encrypted column decryption is by setting the value of the ColumnEncryption
+  // connection string keyword to Enabled
+
+  //DM.FDConnection.Params.Add('TrustServerCertificate=Yes');
+  //DM.FDConnection.Params.Add('ColumnEncryption=Enabled');
 
   DM.FDConnection.Connected := True;
 
@@ -61,7 +76,6 @@ begin
     FMainView.DisplayMessage('Connected!')
   else
     FMainView.DisplayMessage('Not connected, see the previous error!');
-
 end;
 
 constructor TAlwaysEncryptedMainPresenter.Create(AMainView: IMainView);
