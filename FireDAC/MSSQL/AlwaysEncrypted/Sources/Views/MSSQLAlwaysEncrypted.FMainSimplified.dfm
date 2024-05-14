@@ -28,13 +28,14 @@ object frmAlwaysEncryptedMainSimplified: TfrmAlwaysEncryptedMainSimplified
     HeaderFont.Style = []
     TabOrder = 0
     StyleName = 'Windows'
-    ExplicitWidth = 996
-    ExplicitHeight = 802
+    ExplicitWidth = 924
+    ExplicitHeight = 810
     object cpUpdatePerson: TCategoryPanel
       Top = 517
       Height = 276
       Caption = 'Modify Person'
       TabOrder = 0
+      ExplicitWidth = 920
       object btnUpdate: TButton
         Left = 650
         Top = 167
@@ -105,7 +106,7 @@ object frmAlwaysEncryptedMainSimplified: TfrmAlwaysEncryptedMainSimplified
       Height = 288
       Caption = 'Query encrypted data'
       TabOrder = 1
-      ExplicitWidth = 998
+      ExplicitWidth = 920
       object pnlQueryEncryptedDataButtons: TPanel
         Left = 0
         Top = 213
@@ -113,8 +114,7 @@ object frmAlwaysEncryptedMainSimplified: TfrmAlwaysEncryptedMainSimplified
         Height = 49
         Align = alBottom
         TabOrder = 0
-        ExplicitTop = 192
-        ExplicitWidth = 944
+        ExplicitWidth = 918
         object btnOpenQuery: TButton
           Left = 650
           Top = 10
@@ -150,8 +150,7 @@ object frmAlwaysEncryptedMainSimplified: TfrmAlwaysEncryptedMainSimplified
             'SELECT ID, FirstName, LastName, SocialSecurityNumber, CreditCard' +
             'Number, Salary FROM dbo.Persons;')
         TabOrder = 2
-        ExplicitTop = 156
-        ExplicitWidth = 964
+        ExplicitWidth = 918
       end
     end
     object cpConnection: TCategoryPanel
@@ -159,7 +158,7 @@ object frmAlwaysEncryptedMainSimplified: TfrmAlwaysEncryptedMainSimplified
       Height = 229
       Caption = 'Connection FireDAC'
       TabOrder = 2
-      ExplicitWidth = 966
+      ExplicitWidth = 920
       object lbledtDriverID: TLabeledEdit
         Left = 12
         Top = 48
