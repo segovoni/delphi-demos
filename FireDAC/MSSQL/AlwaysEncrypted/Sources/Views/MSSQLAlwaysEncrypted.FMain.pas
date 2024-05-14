@@ -8,7 +8,12 @@ uses
   Vcl.StdCtrls, Vcl.ExtCtrls,
   MSSQLAlwaysEncrypted.Interfaces, MSSQLAlwaysEncrypted.MainPresenter,
   Vcl.WinXCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, FireDAC.Phys.ODBCDef,
-  FireDAC.Stan.Intf, FireDAC.Phys, FireDAC.Phys.ODBCBase, FireDAC.Phys.ODBC;
+  FireDAC.Stan.Intf, FireDAC.Phys, FireDAC.Phys.ODBCBase, FireDAC.Phys.ODBC,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.UI.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef,
+  FireDAC.VCLUI.Wait, Data.Win.ADODB, Vcl.Mask;
 
 type
   TfrmAlwaysEncryptedMain = class(TForm, IMainView)
@@ -37,15 +42,26 @@ type
     lbledtColumnNameWhere: TLabeledEdit;
     lbledtEqualToWhere: TLabeledEdit;
     lbledtColumnValueWhere: TLabeledEdit;
+    DBGrid1: TDBGrid;
+    dsQueryEncryptedDataTEST: TDataSource;
+    FDQueryTEST: TFDQuery;
+    FDConnectionTEST: TFDConnection;
+    ADOConnectionTEST: TADOConnection;
+    DBGrid2: TDBGrid;
+    ADOQueryTEST: TADOQuery;
+    DataSourceTEST: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
     procedure btnOpenQueryClick(Sender: TObject);
     procedure btnUpdateClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FAlwaysEncryptedMainPresenter: TAlwaysEncryptedMainPresenter;
+    // View utility
+    procedure SetConnection;
   public
-    // input (function)
+    // Input (function)
     function GetDriverID: string;
     function GetDataSource: string;
     function GetServerName: string;
@@ -59,12 +75,12 @@ type
     function GetNonEncryptedValue: string;
     function GetColumnNameWhere: string;
     function GetColumnValueWhere: string;
-    // output (procedure)
+    // Output (procedure)
     procedure Connect;
     procedure OpenQuery;
     procedure ExecUpdate;
     procedure DisplayMessage(AValue: string);
-    // input/output (function with params)
+    // Input/Output (function with params)
     function AskConfirmation(AValue: string): Boolean;
   end;
 
@@ -118,6 +134,11 @@ end;
 procedure TfrmAlwaysEncryptedMain.FormDestroy(Sender: TObject);
 begin
   FAlwaysEncryptedMainPresenter.Free;
+end;
+
+procedure TfrmAlwaysEncryptedMain.FormShow(Sender: TObject);
+begin
+  SetConnection;
 end;
 
 function TfrmAlwaysEncryptedMain.GetColumnNameWhere: string;
@@ -188,6 +209,16 @@ end;
 procedure TfrmAlwaysEncryptedMain.OpenQuery;
 begin
   FAlwaysEncryptedMainPresenter.OpenQuery;
+end;
+
+procedure TfrmAlwaysEncryptedMain.SetConnection;
+begin
+  lbledtDriverID.Text := 'ODBC';
+  lbledtDataSource.Text := 'AlwaysEncryptedDB';
+  lbledtServerName.Text := 'decision-making';
+  lbledtDatabaseName.Text := 'AlwaysEncryptedDB';
+  lbledtUserName.Text := 'Delphi_User';
+  lbledtPassword.Text := 'DelphiDay2024!';
 end;
 
 procedure TfrmAlwaysEncryptedMain.ExecUpdate;
