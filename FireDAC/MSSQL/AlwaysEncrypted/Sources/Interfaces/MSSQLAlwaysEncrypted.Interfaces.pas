@@ -52,7 +52,6 @@ type
     procedure Connect;
     procedure OpenQuery;
     procedure Update;
-    procedure DisplayPerson;
     procedure DisplayFirstName(AValue: string);
     procedure DisplayLastName(AValue: string);
     procedure DisplaySocialSecurityNumber(AValue: string);
