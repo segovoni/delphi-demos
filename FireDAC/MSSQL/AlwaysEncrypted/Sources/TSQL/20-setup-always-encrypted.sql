@@ -34,13 +34,27 @@ GO
 -- Microsoft ODBC Driver for SQL Server on Windows
 -- https://learn.microsoft.com/sql/connect/odbc/windows/microsoft-odbc-driver-for-sql-server-on-windows
 
+-- Working with column master key stores
+-- https://learn.microsoft.com/sql/connect/odbc/using-always-encrypted-with-the-odbc-driver?WT.mc_id=DP-MVP-4029181#working-with-column-master-key-stores
+
 -- Database permissions
 -- https://learn.microsoft.com/sql/relational-databases/security/encryption/always-encrypted-database-engine?WT.mc_id=DP-MVP-4029181#database-permissions
+
+USE [AlwaysEncryptedDB];
+GO
 
 -- GRANT permissions to [Delphi_User]  
 GRANT VIEW ANY COLUMN MASTER KEY DEFINITION TO [Delphi_User];
 GRANT VIEW ANY COLUMN ENCRYPTION KEY DEFINITION TO [Delphi_User];
 GO
 
--- Working with column master key stores
--- https://learn.microsoft.com/sql/connect/odbc/using-always-encrypted-with-the-odbc-driver?WT.mc_id=DP-MVP-4029181#working-with-column-master-key-stores
+SELECT
+  ID
+  ,FirstName
+  ,LastName
+  ,SocialSecurityNumber
+  ,CreditCardNumber
+  ,Salary
+FROM
+  dbo.Persons;
+GO
