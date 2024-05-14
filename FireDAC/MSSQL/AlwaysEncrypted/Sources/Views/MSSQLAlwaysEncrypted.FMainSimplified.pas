@@ -34,6 +34,7 @@ type
     lbledtCreditCardNumber: TLabeledEdit;
     lbledtSalary: TLabeledEdit;
     lbledtSocialSecurityNumber: TLabeledEdit;
+    lbledtGender: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -57,6 +58,7 @@ type
     function GetdsQueryEncryptedData: TDataSource;
     function GetFirstName: string;
     function GetLastName: string;
+    function GetGender: string;
     function GetSocialSecurityNumber: string;
     function GetCreditCardNumber: string;
     function GetSalary: Currency;
@@ -66,6 +68,7 @@ type
     procedure UpdatePerson;
     procedure DisplayFirstName(AValue: string);
     procedure DisplayLastName(AValue: string);
+    procedure DisplayGender(AValue: string);
     procedure DisplaySocialSecurityNumber(AValue: string);
     procedure DisplayCreditCardNumber(AValue: string);
     procedure DisplaySalary(AValue: Currency);
@@ -113,6 +116,11 @@ end;
 procedure TfrmAlwaysEncryptedMainSimplified.DisplayFirstName(AValue: string);
 begin
   lbledtFirstName.Text := AValue;
+end;
+
+procedure TfrmAlwaysEncryptedMainSimplified.DisplayGender(AValue: string);
+begin
+  lbledtGender.Text := AValue;
 end;
 
 procedure TfrmAlwaysEncryptedMainSimplified.DisplayLastName(AValue: string);
@@ -181,6 +189,11 @@ end;
 function TfrmAlwaysEncryptedMainSimplified.GetFirstName: string;
 begin
   result := lbledtFirstName.Text;
+end;
+
+function TfrmAlwaysEncryptedMainSimplified.GetGender: string;
+begin
+  result := lbledtGender.Text;
 end;
 
 function TfrmAlwaysEncryptedMainSimplified.GetLastName: string;
