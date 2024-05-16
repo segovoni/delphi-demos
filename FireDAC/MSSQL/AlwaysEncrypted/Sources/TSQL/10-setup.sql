@@ -69,23 +69,24 @@ GO
 CREATE TABLE dbo.Persons
 (
   ID INTEGER IDENTITY(1, 1) NOT NULL
-  ,FirstName NVARCHAR(32) NOT NULL
-  ,LastName NVARCHAR(32) NOT NULL
-  ,SocialSecurityNumber CHAR(11) NOT NULL
-    -- COLLATE Latin1_General_BIN2 NOT NULL
-  ,CreditCardNumber CHAR(19)
-    -- COLLATE Latin1_General_BIN2 NOT NULL
+  ,FirstName NVARCHAR(16) NOT NULL
+  ,LastName NVARCHAR(16) NOT NULL
+  ,Gender NCHAR(10) NULL
+  ,SocialSecurityNumber CHAR(10) NOT NULL
+   -- COLLATE Latin1_General_BIN2 NOT NULL
+  ,CreditCardNumber CHAR(15)
+   -- COLLATE Latin1_General_BIN2 NOT NULL
   ,Salary DECIMAL(19, 4) NOT NULL
-    -- COLLATE Latin1_General_BIN2 NOT NULL
+   -- COLLATE Latin1_General_BIN2 NOT NULL
 );
 GO
 
 
 INSERT INTO dbo.Persons
-  (FirstName, LastName, SocialSecurityNumber, CreditCardNumber, Salary)
+  (FirstName, LastName, Gender, SocialSecurityNumber, CreditCardNumber, Salary)
 VALUES
-  ('Rob', 'Walters', '795-73-9838', '1111-2222-3333-4444', 31692.50)
-  ,('Gail', 'Erickson', '311-23-4578', '5555-6666-7777-8888', 40984.30);
+  ('Rob', 'Walters', 'Male', '1520273859', '372305256328259', 31692)
+  ,('Gail', 'Erickson', 'Female', '4520283752', '502301225345239', 40984);
 GO
 
 
@@ -93,6 +94,7 @@ SELECT
   ID
   ,FirstName
   ,LastName
+  ,Gender
   ,SocialSecurityNumber
   ,CreditCardNumber
   ,Salary

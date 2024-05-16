@@ -14,7 +14,7 @@ type
     constructor Create(AMainSimplifiedView: IMainSimplifiedView);
     procedure Connect;
     procedure OpenQuery;
-    procedure Update;
+    procedure UpdatePerson;
     procedure DisplayPerson;
   end;
 
@@ -96,6 +96,7 @@ begin
 
   FMainSimplifiedView.DisplayFirstName(LPersonAR.FirstName);
   FMainSimplifiedView.DisplayLastName(LPersonAR.LastName);
+  FMainSimplifiedView.DisplayGender(LPersonAR.Gender);
   FMainSimplifiedView.DisplaySocialSecurityNumber(LPersonAR.SocialSecurityNumber);
   FMainSimplifiedView.DisplayCreditCardNumber(LPersonAR.CreditCardNumber);
   FMainSimplifiedView.DisplaySalary(LPersonAR.Salary);
@@ -120,7 +121,7 @@ begin
     FMainSimplifiedView.DisplayMessage('SQL query text is empty!');
 end;
 
-procedure TAlwaysEncryptedMainSimplifiedPresenter.Update;
+procedure TAlwaysEncryptedMainSimplifiedPresenter.UpdatePerson;
 var
   LPersonAR: TPersonActiveRecord;
 begin
@@ -131,6 +132,7 @@ begin
   try
     LPersonAR.FirstName := FMainSimplifiedView.GetFirstName;
     LPersonAR.LastName := FMainSimplifiedView.GetLastName;
+    LPersonAR.Gender := FMainSimplifiedView.GetGender;
     LPersonAR.SocialSecurityNumber := FMainSimplifiedView.GetSocialSecurityNumber;
     LPersonAR.CreditCardNumber := FMainSimplifiedView.GetCreditCardNumber;
     LPersonAR.Salary := FMainSimplifiedView.GetSalary;
